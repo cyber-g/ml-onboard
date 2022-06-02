@@ -1,0 +1,10 @@
+flake8-nb
+jupyterlab
+matplotlib
+numpy
+pandas
+pytest
+scipy
+seaborn
+scikit-learn
+tensorflow

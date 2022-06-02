@@ -1,0 +1,48 @@
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/python/tags/
+image: continuumio/miniconda3:latest
+
+stages:
+  - lint
+  - test
+  - staging
+
+lint:
+  stage: lint
+  before_script:
+    - conda install --file requirements.in -c conda-forge
+  script:
+    - flake8_nb notebooks/*
+    - flake8 src/*.py
+
+pages:
+  stage: staging
+  needs: []
+  before_script:
+    - apt-get -q -y update
+    - apt-get install -y xxd
+    - conda install --file requirements.in -c conda-forge
+  script:
+    - jupyter nbconvert --no-prompt --to html --execute --ExecutePreprocessor.timeout=600 --output-dir='./html' notebooks/*.ipynb
+    - cp -r html public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+test-acquisition:
+  stage: test
+  needs: []
+  image: debian:testing
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  script:
+    - apt-get -q -y update
+    - env DEBIAN_FRONTEND=noninteractive apt-get -q -y install build-essential meson gcc-arm-none-eabi libnewlib-arm-none-eabi
+    - cd iot-node/acquisition
+    - meson --cross-file=cross-file.txt _build
+    - ninja -C _build
+  artifacts:
+    paths:
+      - iot-node/acquisition/_build/main.elf

@@ -1,0 +1,27 @@
+[constants]
+arch = 'arm-none-eabi'
+mcu = ['-mcpu=cortex-m4', '-mthumb', '-mfpu=fpv4-sp-d16', '-mfloat-abi=hard']
+
+[binaries]
+c       = arch + '-gcc'
+cpp     = arch + '-g++'
+ld      = arch + '-ld'
+ar      = arch + '-ar'
+as      = arch + '-as'
+size    = arch + '-size'
+objdump = arch + '-objdump'
+objcopy = arch + '-objcopy'
+strip   = arch + '-strip'
+gdb     = arch + '-gdb'
+
+[built-in options]
+c_args      = mcu
+c_link_args = mcu + ['-specs=nano.specs', '-u_printf_float']
+cpp_args      = mcu
+cpp_link_args = c_link_args
+
+[host_machine]
+system     = 'none'
+cpu_family = 'arm'
+cpu        = 'cortex-m4'
+endian     = 'little'

@@ -1,0 +1,24 @@
+[submodule "iot-node/stm32l4xx_hal_driver"]
+	path = iot-node/stm32l4xx_hal_driver
+	url = https://github.com/STMicroelectronics/stm32l4xx_hal_driver
+[submodule "iot-node/cmsis_device_l4"]
+	path = iot-node/cmsis_device_l4
+	url = https://github.com/STMicroelectronics/cmsis_device_l4
+[submodule "iot-node/CMSIS_5"]
+	path = iot-node/CMSIS_5
+	url = https://github.com/ARM-software/CMSIS_5
+[submodule "iot-node/FreeRTOS-Kernel"]
+	path = iot-node/FreeRTOS-Kernel
+	url = https://github.com/FreeRTOS/FreeRTOS-Kernel
+[submodule "iot-node/flatbuffers"]
+	path = iot-node/flatbuffers
+	url = https://github.com/google/flatbuffers
+[submodule "iot-node/ruy"]
+	path = iot-node/ruy
+	url = https://github.com/google/ruy
+[submodule "iot-node/tflite-micro"]
+	path = iot-node/tflite-micro
+	url = https://github.com/tensorflow/tflite-micro
+[submodule "iot-node/gemmlowp"]
+	path = iot-node/gemmlowp
+	url = https://github.com/google/gemmlowp/
